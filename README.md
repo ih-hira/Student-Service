@@ -12,7 +12,7 @@
   - Table that shows students list
   - Way to browse specific student information by clicking table row
 
-# Task 2: Technology Stack
+# Technology Stack
 
   - Spring Boot 2.x.x
   - Java 1.8
