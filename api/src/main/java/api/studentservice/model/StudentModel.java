@@ -1,51 +1,51 @@
 package api.studentservice.model;
 
 public class StudentModel {
-    private String sId;
-    private String sName;
-    private String sClass;
-    private String sAddress;
+    private String id;
+    private String name;
+    private String sclass;
+    private String address;
 
     public StudentModel() {
 
     }
 
-    public StudentModel(String sId, String sName, String sClass, String sAddress) {
-        this.sId = sId;
-        this.sName = sName;
-        this.sClass = sClass;
-        this.sAddress = sAddress;
+    public StudentModel(String id, String name, String sclass, String address) {
+        this.id = id;
+        this.name = name;
+        this.sclass = sclass;
+        this.address = address;
     }
 
-    public String getsId() {
-        return sId;
+    public String getId() {
+        return id;
     }
 
-    public void setsId(String sId) {
-        this.sId = sId;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    public String getsName() {
-        return sName;
+    public String getName() {
+        return name;
     }
 
-    public void setsName(String sName) {
-        this.sName = sName;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getsClass() {
-        return sClass;
+    public String getSclass() {
+        return sclass;
     }
 
-    public void setsClass(String sClass) {
-        this.sClass = sClass;
+    public void setSclass(String sclass) {
+        this.sclass = sclass;
     }
 
-    public String getsAddress() {
-        return sAddress;
+    public String getAddress() {
+        return address;
     }
 
-    public void setsAddress(String sAddress) {
-        this.sAddress = sAddress;
+    public void setAddress(String address) {
+        this.address = address;
     }
 }

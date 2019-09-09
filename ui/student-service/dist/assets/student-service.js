@@ -2,6 +2,25 @@
 
 
 
+;define("student-service/adapters/student", ["exports", "ember-data"], function (_exports, _emberData) {
+  "use strict";
+
+  Object.defineProperty(_exports, "__esModule", {
+    value: true
+  });
+  _exports.default = void 0;
+
+  var _default = _emberData.default.RESTAdapter.extend({
+    host: 'http://localhost:8080',
+
+    pathToType() {
+      return 'students';
+    }
+
+  });
+
+  _exports.default = _default;
+});
 ;define("student-service/app", ["exports", "student-service/resolver", "ember-load-initializers", "student-service/config/environment"], function (_exports, _resolver, _emberLoadInitializers, _environment) {
   "use strict";
 
@@ -248,6 +267,26 @@
   };
   _exports.default = _default;
 });
+;define("student-service/models/student", ["exports", "ember-data"], function (_exports, _emberData) {
+  "use strict";
+
+  Object.defineProperty(_exports, "__esModule", {
+    value: true
+  });
+  _exports.default = void 0;
+  const {
+    Model
+  } = _emberData.default;
+
+  var _default = Model.extend({
+    //id: DS.attr('string'),
+    name: _emberData.default.attr('string'),
+    sclass: _emberData.default.attr('string'),
+    address: _emberData.default.attr('string')
+  });
+
+  _exports.default = _default;
+});
 ;define("student-service/resolver", ["exports", "ember-resolver"], function (_exports, _emberResolver) {
   "use strict";
 
@@ -269,8 +308,48 @@
     location: _environment.default.locationType,
     rootURL: _environment.default.rootURL
   });
-  Router.map(function () {});
+  Router.map(function () {
+    this.route('students');
+  });
   var _default = Router;
+  _exports.default = _default;
+});
+;define("student-service/routes/students", ["exports"], function (_exports) {
+  "use strict";
+
+  Object.defineProperty(_exports, "__esModule", {
+    value: true
+  });
+  _exports.default = void 0;
+
+  var _default = Ember.Route.extend({
+    model() {
+      return this.store.findAll('student');
+    }
+
+  });
+
+  _exports.default = _default;
+});
+;define("student-service/serializers/student", ["exports", "ember-data"], function (_exports, _emberData) {
+  "use strict";
+
+  Object.defineProperty(_exports, "__esModule", {
+    value: true
+  });
+  _exports.default = void 0;
+
+  var _default = _emberData.default.RESTSerializer.extend({
+    normalizeResponse(store, primaryModelClass, payload, id, requestType) {
+      console.log(payload);
+      payload = {
+        students: payload
+      };
+      return this._super(store, primaryModelClass, payload, id, requestType);
+    }
+
+  });
+
   _exports.default = _default;
 });
 ;define("student-service/services/ajax", ["exports", "ember-ajax/services/ajax"], function (_exports, _ajax) {
@@ -295,10 +374,28 @@
   _exports.default = void 0;
 
   var _default = Ember.HTMLBars.template({
-    "id": "iY5EDkI8",
-    "block": "{\"symbols\":[],\"statements\":[[5,\"welcome-page\",[],[[],[]]],[0,\"\\n\"],[0,\"\\n\"],[1,[22,\"outlet\"],false]],\"hasEval\":false}",
+    "id": "Zz2lH6Ww",
+    "block": "{\"symbols\":[],\"statements\":[[7,\"div\",true],[10,\"class\",\"container\"],[8],[0,\"\\n    \"],[7,\"div\",true],[10,\"class\",\"menu\"],[8],[0,\"\\n        \"],[7,\"h1\",true],[8],[0,\"\\n            \"],[7,\"em\",true],[8],[0,\"Student Service\"],[9],[0,\"\\n        \"],[9],[0,\"\\n    \"],[9],[0,\"\\n\"],[9],[0,\"\\n\"],[1,[22,\"outlet\"],false]],\"hasEval\":false}",
     "meta": {
       "moduleName": "student-service/templates/application.hbs"
+    }
+  });
+
+  _exports.default = _default;
+});
+;define("student-service/templates/students", ["exports"], function (_exports) {
+  "use strict";
+
+  Object.defineProperty(_exports, "__esModule", {
+    value: true
+  });
+  _exports.default = void 0;
+
+  var _default = Ember.HTMLBars.template({
+    "id": "j+J9tXOV",
+    "block": "{\"symbols\":[\"student\"],\"statements\":[[7,\"h2\",true],[8],[0,\"Student list\"],[9],[0,\"\\n\"],[7,\"table\",true],[8],[0,\"\\n    \"],[7,\"tr\",true],[8],[0,\"\\n        \"],[7,\"th\",true],[8],[0,\"ID\"],[9],[0,\"\\n        \"],[7,\"th\",true],[8],[0,\"Name\"],[9],[0,\"\\n        \"],[7,\"th\",true],[8],[0,\"Class\"],[9],[0,\"\\n        \"],[7,\"th\",true],[8],[0,\"Address\"],[9],[0,\"\\n    \"],[9],[0,\"\\n\"],[4,\"each\",[[23,0,[\"model\"]]],null,{\"statements\":[[0,\"    \"],[7,\"tr\",true],[8],[0,\"\\n        \"],[7,\"td\",true],[8],[1,[23,1,[\"id\"]],false],[9],[0,\"\\n        \"],[7,\"td\",true],[8],[1,[23,1,[\"name\"]],false],[9],[0,\"\\n        \"],[7,\"td\",true],[8],[1,[23,1,[\"sclass\"]],false],[9],[0,\"\\n        \"],[7,\"td\",true],[8],[1,[23,1,[\"address\"]],false],[9],[0,\"\\n    \"],[9],[0,\"\\n\"]],\"parameters\":[1]},null],[9],[0,\"\\n\"],[1,[22,\"outlet\"],false]],\"hasEval\":false}",
+    "meta": {
+      "moduleName": "student-service/templates/students.hbs"
     }
   });
 
@@ -327,7 +424,7 @@ catch(err) {
 
 ;
           if (!runningTests) {
-            require("student-service/app")["default"].create({"name":"student-service","version":"0.0.0+65eb577a"});
+            require("student-service/app")["default"].create({"name":"student-service","version":"0.0.0+f17740b3"});
           }
         
 //# sourceMappingURL=student-service.map
