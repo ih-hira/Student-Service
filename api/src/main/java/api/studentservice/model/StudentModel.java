@@ -1,6 +1,13 @@
 package api.studentservice.model;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "students")
 public class StudentModel {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int serial;
     private String id;
     private String name;
     private String sclass;

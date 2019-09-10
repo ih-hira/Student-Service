@@ -14,7 +14,7 @@
 
 # Technology Stack
 
-  - Spring Boot 2.x.x
+  - Spring Boot 2.1.8
   - Java 1.8
   - MySQL
   - JPA
@@ -27,5 +27,5 @@
 | ------ | ------ | ------ |
 | GET | /students | Gets all students
 | GET | /students/id | Gets student by given ID
-| POST | /students | Add new student
-| PUT | /students/id | Update student data by given ID
+| POST | /students | Adds new student
+| PUT | /students/id | Updates student data by given ID
