@@ -20,3 +20,12 @@
   - JPA
   - Ember JS
   - Docker
+  
+# API End Points
+
+| Method | URL | Action |
+| ------ | ------ | ------ |
+| GET | /students | Gets all students
+| GET | /students/id | Gets student by given ID
+| POST | /students | Add new student
+| PUT | /students/id | Update student data by given ID
