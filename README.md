@@ -28,4 +28,12 @@
 | GET | /students | Gets all students
 | GET | /students/id | Gets student by given ID
 | POST | /students | Adds new student
-| PUT | /students/id | Updates student data by given ID
+| PUT/PATCH | /students/id | Updates student data by given ID
+
+# Access Points
+
+| Name | URL |
+| ------ | ------ |
+| API | http://localhost:8080
+| UI | http://localhost:4200
+| Database (MySQL) | http://localhost:3306/studentservice

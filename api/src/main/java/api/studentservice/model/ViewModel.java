@@ -1,25 +1,15 @@
 package api.studentservice.model;
 
-import javax.persistence.*;
-
-@Entity
-@Table(name = "students")
-public class StudentModel {
-//    @Id
-//    @GeneratedValue(strategy = GenerationType.AUTO)
-//    private int serial;
-
-    @Id
+public class ViewModel {
     private String id;
     private String name;
     private String sclass;
     private String address;
 
-    public StudentModel() {
-
+    public ViewModel() {
     }
 
-    public StudentModel(String id, String name, String sclass, String address) {
+    public ViewModel(String id, String name, String sclass, String address) {
         this.id = id;
         this.name = name;
         this.sclass = sclass;
