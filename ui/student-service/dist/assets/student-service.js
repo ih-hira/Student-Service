@@ -323,10 +323,44 @@
   _exports.default = void 0;
 
   var _default = Ember.Route.extend({
-    model() {
-      return this.store.findAll('student');
-    }
+    // model() {
+    //     return this.store.findAll('student');
+    // },
+    ajax: Ember.inject.service(),
 
+    model() {
+      return this.get('ajax').request('http://localhost:8080/students');
+    },
+
+    actions: {
+      submission() {
+        console.log(this.controller.get('model.id'));
+        console.log(this.controller.get('model.name'));
+        console.log(this.controller.get('model.sclass'));
+        console.log(this.controller.get('model.address'));
+        let params = {
+          id: this.controller.get('model.id'),
+          name: this.controller.get('model.name'),
+          sclass: this.controller.get('model.sclass'),
+          address: this.controller.get('model.address')
+        };
+        var resp = this.get('ajax').request('http://localhost:8080/students', {
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          },
+          method: 'POST',
+          data: JSON.stringify({
+            "id": this.controller.get('model.id'),
+            "name": this.controller.get('model.name'),
+            "sclass": this.controller.get('model.sclass'),
+            "address": this.controller.get('model.address')
+          })
+        });
+        this.refresh();
+      }
+
+    }
   });
 
   _exports.default = _default;
@@ -374,8 +408,8 @@
   _exports.default = void 0;
 
   var _default = Ember.HTMLBars.template({
-    "id": "Zz2lH6Ww",
-    "block": "{\"symbols\":[],\"statements\":[[7,\"div\",true],[10,\"class\",\"container\"],[8],[0,\"\\n    \"],[7,\"div\",true],[10,\"class\",\"menu\"],[8],[0,\"\\n        \"],[7,\"h1\",true],[8],[0,\"\\n            \"],[7,\"em\",true],[8],[0,\"Student Service\"],[9],[0,\"\\n        \"],[9],[0,\"\\n    \"],[9],[0,\"\\n\"],[9],[0,\"\\n\"],[1,[22,\"outlet\"],false]],\"hasEval\":false}",
+    "id": "GEII8mac",
+    "block": "{\"symbols\":[],\"statements\":[[7,\"style\",true],[8],[0,\"\\n    h1{\\n        text-align: center;\\n        color:blueviolet;\\n    }\\n\"],[9],[0,\"\\n\"],[7,\"div\",true],[10,\"class\",\"container\"],[8],[0,\"\\n    \"],[7,\"div\",true],[10,\"class\",\"menu\"],[8],[0,\"\\n        \"],[7,\"h1\",true],[8],[0,\"\\n            Student Service\\n        \"],[9],[0,\"\\n    \"],[9],[0,\"\\n\"],[9],[0,\"\\n\"],[1,[22,\"outlet\"],false]],\"hasEval\":false}",
     "meta": {
       "moduleName": "student-service/templates/application.hbs"
     }
@@ -392,8 +426,8 @@
   _exports.default = void 0;
 
   var _default = Ember.HTMLBars.template({
-    "id": "j+J9tXOV",
-    "block": "{\"symbols\":[\"student\"],\"statements\":[[7,\"h2\",true],[8],[0,\"Student list\"],[9],[0,\"\\n\"],[7,\"table\",true],[8],[0,\"\\n    \"],[7,\"tr\",true],[8],[0,\"\\n        \"],[7,\"th\",true],[8],[0,\"ID\"],[9],[0,\"\\n        \"],[7,\"th\",true],[8],[0,\"Name\"],[9],[0,\"\\n        \"],[7,\"th\",true],[8],[0,\"Class\"],[9],[0,\"\\n        \"],[7,\"th\",true],[8],[0,\"Address\"],[9],[0,\"\\n    \"],[9],[0,\"\\n\"],[4,\"each\",[[23,0,[\"model\"]]],null,{\"statements\":[[0,\"    \"],[7,\"tr\",true],[8],[0,\"\\n        \"],[7,\"td\",true],[8],[1,[23,1,[\"id\"]],false],[9],[0,\"\\n        \"],[7,\"td\",true],[8],[1,[23,1,[\"name\"]],false],[9],[0,\"\\n        \"],[7,\"td\",true],[8],[1,[23,1,[\"sclass\"]],false],[9],[0,\"\\n        \"],[7,\"td\",true],[8],[1,[23,1,[\"address\"]],false],[9],[0,\"\\n    \"],[9],[0,\"\\n\"]],\"parameters\":[1]},null],[9],[0,\"\\n\"],[1,[22,\"outlet\"],false]],\"hasEval\":false}",
+    "id": "uB5rpS8g",
+    "block": "{\"symbols\":[\"student\"],\"statements\":[[7,\"link\",true],[10,\"rel\",\"stylesheet\"],[10,\"href\",\"https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css\"],[8],[9],[0,\"\\n\"],[7,\"div\",true],[10,\"class\",\"container\"],[8],[0,\"\\n    \"],[7,\"h2\",true],[8],[0,\"Student list\"],[9],[0,\"\\n    \"],[7,\"table\",true],[10,\"class\",\"table table-striped\"],[8],[0,\"\\n        \"],[7,\"thead\",true],[8],[0,\"\\n            \"],[7,\"tr\",true],[8],[0,\"\\n                \"],[7,\"th\",true],[8],[0,\"Id\"],[9],[0,\"\\n                \"],[7,\"th\",true],[8],[0,\"Name\"],[9],[0,\"\\n                \"],[7,\"th\",true],[8],[0,\"Class\"],[9],[0,\"\\n                \"],[7,\"th\",true],[8],[0,\"Address\"],[9],[0,\"\\n            \"],[9],[0,\"\\n        \"],[9],[0,\"\\n        \"],[7,\"tbody\",true],[8],[0,\"\\n\"],[4,\"each\",[[23,0,[\"model\"]]],null,{\"statements\":[[0,\"            \"],[7,\"tr\",true],[8],[0,\"\\n                \"],[7,\"td\",true],[8],[1,[23,1,[\"id\"]],false],[9],[0,\"\\n                \"],[7,\"td\",true],[8],[1,[23,1,[\"name\"]],false],[9],[0,\"\\n                \"],[7,\"td\",true],[8],[1,[23,1,[\"sclass\"]],false],[9],[0,\"\\n                \"],[7,\"td\",true],[8],[1,[23,1,[\"address\"]],false],[9],[0,\"\\n            \"],[9],[0,\"\\n\"]],\"parameters\":[1]},null],[0,\"        \"],[9],[0,\"\\n    \"],[9],[0,\"\\n\"],[9],[0,\"\\n\"],[7,\"div\",true],[10,\"class\",\"container\"],[8],[0,\"\\n    \"],[7,\"h2\",true],[8],[0,\"Add New Student\"],[9],[0,\"\\n    \"],[7,\"form\",true],[10,\"class\",\"form-horizontal\"],[8],[0,\"\\n        \"],[7,\"div\",true],[10,\"class\",\"form-group\"],[8],[0,\"\\n            \"],[7,\"label\",true],[10,\"for\",\"id\"],[10,\"class\",\"col-md-2 control-label\"],[8],[0,\"ID\"],[9],[0,\"\\n            \"],[7,\"div\",true],[10,\"class\",\"col-md-5\"],[8],[0,\"\\n                \"],[1,[28,\"input\",null,[[\"value\",\"class\"],[[24,[\"model\",\"id\"]],\"form-control\"]]],false],[0,\"\\n            \"],[9],[0,\"\\n        \"],[9],[0,\"\\n        \"],[7,\"div\",true],[10,\"class\",\"form-group\"],[8],[0,\"\\n            \"],[7,\"label\",true],[10,\"for\",\"name\"],[10,\"class\",\"col-md-2 control-label\"],[8],[0,\"Name\"],[9],[0,\"\\n            \"],[7,\"div\",true],[10,\"class\",\"col-md-5\"],[8],[0,\"\\n                \"],[1,[28,\"input\",null,[[\"value\",\"class\"],[[24,[\"model\",\"name\"]],\"form-control\"]]],false],[0,\"\\n            \"],[9],[0,\"\\n        \"],[9],[0,\"\\n        \"],[7,\"div\",true],[10,\"class\",\"form-group\"],[8],[0,\"\\n            \"],[7,\"label\",true],[10,\"for\",\"class\"],[10,\"class\",\"col-md-2 control-label\"],[8],[0,\"Class\"],[9],[0,\"\\n            \"],[7,\"div\",true],[10,\"class\",\"col-md-5\"],[8],[0,\"\\n                \"],[1,[28,\"input\",null,[[\"value\",\"class\"],[[24,[\"model\",\"sclass\"]],\"form-control\"]]],false],[0,\"\\n            \"],[9],[0,\"\\n        \"],[9],[0,\"\\n        \"],[7,\"div\",true],[10,\"class\",\"form-group\"],[8],[0,\"\\n            \"],[7,\"label\",true],[10,\"for\",\"address\"],[10,\"class\",\" col-md-2 control-label\"],[8],[0,\"Address\"],[9],[0,\"\\n            \"],[7,\"div\",true],[10,\"class\",\"col-md-5\"],[8],[0,\"\\n                \"],[1,[28,\"textarea\",null,[[\"value\",\"class\"],[[24,[\"model\",\"address\"]],\"form-control\"]]],false],[0,\"\\n            \"],[9],[0,\"\\n        \"],[9],[0,\"\\n        \"],[7,\"div\",true],[10,\"class\",\"form-group\"],[8],[0,\"\\n            \"],[7,\"div\",true],[10,\"class\",\"col-sm-offset-2 col-sm-10\"],[8],[0,\"\\n                \"],[7,\"button\",false],[12,\"class\",\"btn btn-sm btn-primary\"],[3,\"action\",[[23,0,[]],\"submission\"]],[8],[0,\"Add\"],[9],[0,\"\\n            \"],[9],[0,\"\\n        \"],[9],[0,\"\\n    \"],[9],[0,\"\\n\"],[9],[0,\"\\n\"],[1,[22,\"outlet\"],false]],\"hasEval\":false}",
     "meta": {
       "moduleName": "student-service/templates/students.hbs"
     }
@@ -424,7 +458,7 @@ catch(err) {
 
 ;
           if (!runningTests) {
-            require("student-service/app")["default"].create({"name":"student-service","version":"0.0.0+f17740b3"});
+            require("student-service/app")["default"].create({"name":"student-service","version":"0.0.0+f4040156"});
           }
         
 //# sourceMappingURL=student-service.map
