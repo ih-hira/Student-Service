@@ -19,6 +19,7 @@ public class StudentServiceApiApplication {
 			@Override
 			public void addCorsMappings(CorsRegistry registry) {
 				registry.addMapping("/students").allowedOrigins("http://localhost:4200");
+				registry.addMapping("/students/{id}").allowedOrigins("http://localhost:4200");
 			}
 		};
 	}

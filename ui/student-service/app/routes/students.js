@@ -10,19 +10,8 @@ export default Ember.Route.extend({
         return this.get('ajax').request('http://localhost:8080/students');
     },
     actions: {
-        submission() {
-            console.log(this.controller.get('model.id'));
-            console.log(this.controller.get('model.name'));
-            console.log(this.controller.get('model.sclass'));
-            console.log(this.controller.get('model.address'));
-            let params = {
-                id: this.controller.get('model.id'),
-                name: this.controller.get('model.name'),
-                sclass: this.controller.get('model.sclass'),
-                address: this.controller.get('model.address')
-            };
-
-            var resp =  this.get('ajax').request('http://localhost:8080/students', {
+        addnew() {
+            var resp = this.get('ajax').request('http://localhost:8080/students', {
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json'
@@ -38,6 +27,27 @@ export default Ember.Route.extend({
                 )
             });
             this.refresh();
+        },
+        updateinfo() {
+            var id = document.getElementById("sid").value;
+            var url = 'http://localhost:8080/students/'+id;
+
+            var resp = this.get('ajax').request(url, {
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                method: 'PATCH',
+                data: JSON.stringify(
+                    {
+                        "id": document.getElementById("sid").value,
+                        "name": document.getElementById("sname").value,
+                        "sclass": document.getElementById("sclass").value,
+                        "address": document.getElementById("saddress").value
+                    }
+                )
+            });
         }
     }
+
 });
