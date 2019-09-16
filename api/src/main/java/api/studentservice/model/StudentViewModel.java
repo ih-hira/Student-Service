@@ -1,15 +1,15 @@
 package api.studentservice.model;
 
-public class ViewModel {
+public class StudentViewModel {
     private String id;
     private String name;
     private String sclass;
     private String address;
 
-    public ViewModel() {
+    public StudentViewModel() {
     }
 
-    public ViewModel(String id, String name, String sclass, String address) {
+    public StudentViewModel(String id, String name, String sclass, String address) {
         this.id = id;
         this.name = name;
         this.sclass = sclass;
