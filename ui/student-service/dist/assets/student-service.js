@@ -466,7 +466,7 @@ catch(err) {
 
 ;
           if (!runningTests) {
-            require("student-service/app")["default"].create({"name":"student-service","version":"0.0.0+83c21f72"});
+            require("student-service/app")["default"].create({"name":"student-service","version":"0.0.0+12133542"});
           }
         
 //# sourceMappingURL=student-service.map
